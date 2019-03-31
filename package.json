@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MERN app training with Redux and Typescript",
   "main": "server.js",
+  "engines": {
+    "node": "v10.15.0"
+  },
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
@@ -20,6 +23,5 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.0.5"
-  },
-  "keywords": []
+  }
 }
