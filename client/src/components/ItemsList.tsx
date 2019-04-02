@@ -20,16 +20,50 @@ const ItemsList: React.FC<PropTypes> = ({
   addItem,
   deleteItem
 }) => {
+  const [modal, onModal] = React.useState<boolean>(false);
+
   React.useEffect(() => {
     getItems();
   }, []);
 
   return (
     <div className="section" style={{ margin: "0 auto", width: "80%" }}>
+      <div className={modal ? "modal is-active" : "modal"}>
+        <div className="modal-background" onClick={() => onModal(false)} />
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">Add Item</p>
+            <button
+              className="delete"
+              aria-label="close"
+              onClick={() => onModal(false)}
+            />
+          </header>
+          <section className="modal-card-body">
+            <input
+              className="input"
+              type="text"
+              placeholder="Your item name..."
+            />
+          </section>
+          <footer className="modal-card-foot">
+            <button
+              className="button is-success"
+              onClick={() => addItem({ name: "item 5" })}
+            >
+              Add Item
+            </button>
+            <button className="button" onClick={() => onModal(false)}>
+              Cancel
+            </button>
+          </footer>
+        </div>
+      </div>
+
       <a
         className="button is-primary"
         style={{ marginBottom: "1rem" }}
-        onClick={() => addItem({ name: "item 5" })}
+        onClick={() => onModal(true)}
       >
         ADD
       </a>
@@ -47,6 +81,8 @@ const ItemsList: React.FC<PropTypes> = ({
     </div>
   );
 };
+
+// add item format  onClick={() => addItem({ name: "item 5" })}
 const mapStateToProps = (state: AppTypes) => ({
   itemsReducer: state.itemsReducer
 });
