@@ -19,7 +19,7 @@ const itemsReducer = (
     case types.ADD_ITEM:
       return {
         ...state,
-        items: [...state.items, action.item]
+        items: [...state.items, { name: action.item }]
       };
     case types.DELETE_ITEM:
       return {

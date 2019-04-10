@@ -1,4 +1,4 @@
-import * as types from "../types";
+import * as types from "../types/itemsTypes";
 import axios from "axios";
 import { ThunkAction } from "redux-thunk";
 import { AppTypes } from "../reducers";
@@ -19,7 +19,7 @@ export const getItems = (): ThunkAction<
 };
 
 export const addItem = (
-  item: types.Item
+  item: string
 ): ThunkAction<void, AppTypes, null, types.AddItem> => dispatch => {
   axios.post("/api/items", item).then(res => {
     dispatch({
@@ -30,7 +30,7 @@ export const addItem = (
 };
 
 export const deleteItem = (
-  id: string
+  id?: string
 ): ThunkAction<void, AppTypes, null, types.DeleteItem> => dispatch => {
   axios.delete(`/api/items/${id}`).then(res => {
     dispatch({
@@ -40,6 +40,6 @@ export const deleteItem = (
   });
 };
 
-export const handleLoading = () => ({
+export const handleLoading = (): types.ItemsLoading => ({
   type: types.LOADING_ITEMS
 });
