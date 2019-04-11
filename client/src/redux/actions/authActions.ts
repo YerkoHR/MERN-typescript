@@ -61,6 +61,32 @@ export const register = ({
     });
 };
 
+export const login = ({
+  email,
+  password
+}: User): ThunkAction<
+  void,
+  AppTypes,
+  null,
+  types.authActionTypes | GetErrors
+> => dispatch => {
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  axios
+    .post("/api/auth", body, config)
+    .then(res => dispatch({ type: types.LOGIN_SUCCESS, data: res.data }))
+    .catch(err => {
+      dispatch({ type: types.LOGIN_FAIL });
+      dispatch(getErrors(err.response.data.msg, err.status, "LOGIN_FAIL"));
+    });
+};
+
 export const logout = () => ({
   type: types.LOGOUT_SUCCESS
 });

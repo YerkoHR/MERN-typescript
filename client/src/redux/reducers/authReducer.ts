@@ -25,7 +25,7 @@ const authReducer = (
         user: action.user
       };
 
-    //case types.LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS:
     case types.REGISTER_SUCCESS:
       localStorage.setItem("token", action.data.token);
 
@@ -38,7 +38,7 @@ const authReducer = (
       };
 
     case types.AUTH_ERROR:
-    //case types.LOGOUT_FAIL:
+    case types.LOGOUT_FAIL:
     case types.LOGOUT_SUCCESS:
     case types.REGISTER_FAIL:
       localStorage.removeItem("token");

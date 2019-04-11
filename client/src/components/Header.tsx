@@ -1,6 +1,7 @@
 import * as React from "react";
 import Register from "./auth/Register";
 import Logout from "./auth/Logout";
+import Login from "./auth/Login";
 
 const Header: React.FC = () => {
   const [toggle, onToggle] = React.useState(false);
@@ -35,6 +36,7 @@ const Header: React.FC = () => {
       <div className={toggle ? "navbar-menu is-active" : "navbar-menu"}>
         <div className="navbar-end">
           <Register />
+          <Login />
           <Logout />
         </div>
       </div>

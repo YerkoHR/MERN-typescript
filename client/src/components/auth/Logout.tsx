@@ -1,27 +1,31 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { AppTypes } from "../../redux/reducers";
-import { Errors } from "../../redux/types/errorTypes";
-import { User } from "../../redux/types/authTypes";
 import { logout } from "../../redux/actions/authActions";
-import { clearErrors } from "../../redux/actions/errorActions";
 
 interface PropTypes {
+  isAuthenticated: boolean | null;
   logout: () => void;
 }
 
-const Logout: React.FC<PropTypes> = ({ logout }) => {
+const Logout: React.FC<PropTypes> = ({ logout, isAuthenticated }) => {
   return (
-    <a className="navbar-item" onClick={() => logout()}>
-      Logout
-    </a>
+    <>
+      {isAuthenticated && (
+        <a className="navbar-item" onClick={() => logout()}>
+          Logout
+        </a>
+      )}
+    </>
   );
 };
 
-//const mapStateToProps = (state: AppTypes) => ({});
+const mapStateToProps = (state: AppTypes) => ({
+  isAuthenticated: state.authReducer.isAuthenticated
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   {
     logout
   }

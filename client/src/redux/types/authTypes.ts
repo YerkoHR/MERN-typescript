@@ -1,6 +1,7 @@
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
@@ -19,7 +20,7 @@ export interface Auth {
 // User types
 
 export interface User {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -55,10 +56,23 @@ export interface RegisterSuccess {
 
 // Login
 
+export interface LoginSuccess {
+  type: typeof LOGIN_SUCCESS;
+  data: {
+    token: string;
+    user: User;
+  };
+}
+export interface LoginFail {
+  type: typeof LOGIN_FAIL;
+}
+
+// Logout
+
 export interface LogoutSuccess {
   type: typeof LOGOUT_SUCCESS;
 }
-export interface LoginFail {
+export interface LogoutFail {
   type: typeof LOGOUT_FAIL;
 }
 
@@ -68,5 +82,7 @@ export type authActionTypes =
   | AuthError
   | RegisterSuccess
   | RegisterFail
+  | LoginSuccess
+  | LoginFail
   | LogoutSuccess
-  | LoginFail;
+  | LogoutFail;
