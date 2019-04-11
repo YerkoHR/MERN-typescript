@@ -26,20 +26,20 @@ const Register: React.FC<PropTypes> = ({
   const [msg, onMsg] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    // If register fail, show error message
     if (error.id === "REGISTER_FAIL") {
       onMsg(error.msg);
     } else {
       onMsg(null);
     }
-  }, [error]);
 
-  React.useEffect(() => {
+    // If register success and modal open, close modal
     if (isAuthenticated) {
       if (modal) {
         onModal(false);
       }
     }
-  }, [isAuthenticated]);
+  }, [error, isAuthenticated]);
 
   const handleToggle = (bool: boolean) => {
     clearErrors();
