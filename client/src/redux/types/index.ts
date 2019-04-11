@@ -1,13 +1,5 @@
-import { GetItems, AddItem, DeleteItem, ItemsLoading } from "./itemsTypes";
-import { getErrors, clearErrors } from "./errorTypes";
-import { userLoading, userLoaded } from "./authTypes";
+import { itemsActionTypes } from "./itemsTypes";
+import { errorActionTypes } from "./errorTypes";
+import { authActionTypes } from "./authTypes";
 
-export type ItemsActionTypes =
-  | GetItems
-  | AddItem
-  | DeleteItem
-  | ItemsLoading
-  | getErrors
-  | clearErrors
-  | userLoading
-  | userLoaded;
+export type ActionTypes = itemsActionTypes | errorActionTypes | authActionTypes;

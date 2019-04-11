@@ -1,5 +1,4 @@
 import * as types from "../types/authTypes";
-import { ItemsActionTypes } from "../types";
 
 const initialState: types.Auth = {
   token: localStorage.getItem("token"),
@@ -10,7 +9,7 @@ const initialState: types.Auth = {
 
 const authReducer = (
   state = initialState,
-  action: ItemsActionTypes
+  action: types.authActionTypes
 ): types.Auth => {
   switch (action.type) {
     case types.USER_LOADING:
@@ -24,6 +23,32 @@ const authReducer = (
         isLoading: false,
         isAuthenticated: true,
         user: action.user
+      };
+
+    //case types.LOGIN_SUCCESS:
+    case types.REGISTER_SUCCESS:
+      localStorage.setItem("token", action.data.token);
+
+      return {
+        ...state,
+        token: action.data.token,
+        user: action.data.user,
+        isAuthenticated: true,
+        isLoading: false
+      };
+
+    case types.AUTH_ERROR:
+    //case types.LOGOUT_FAIL:
+    case types.LOGOUT_SUCCESS:
+    case types.REGISTER_FAIL:
+      localStorage.removeItem("token");
+
+      return {
+        ...state,
+        isAuthenticated: false,
+        isLoading: false,
+        user: null,
+        token: null
       };
     default:
       return state;

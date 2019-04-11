@@ -2,15 +2,17 @@ export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export interface Errors {
-  msg: object;
+  msg: string | null;
   status: number | null;
-  id: string | null;
+  id?: string | null;
 }
 
-export interface getErrors {
+export interface GetErrors {
   type: typeof GET_ERRORS;
   error: Errors;
 }
-export interface clearErrors {
+export interface ClearErrors {
   type: typeof CLEAR_ERRORS;
 }
+
+export type errorActionTypes = GetErrors | ClearErrors;

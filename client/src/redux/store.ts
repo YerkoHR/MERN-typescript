@@ -1,16 +1,15 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import rootReducer, { AppTypes } from "./reducers";
-import { ItemsActionTypes } from "./types";
+import { ActionTypes } from "./types";
+
 const initialState = {};
 
-//const middleWare = [thunk];
-
-const store = createStore<AppTypes, ItemsActionTypes, {}, {}>(
+const store = createStore<AppTypes, ActionTypes, {}, {}>(
   rootReducer,
   initialState,
   compose(
-    applyMiddleware(thunk as ThunkMiddleware<AppTypes, ItemsActionTypes>),
+    applyMiddleware(thunk as ThunkMiddleware<AppTypes, ActionTypes>),
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
       (window as any).__REDUX_DEVTOOLS_EXTENSION__()
   )

@@ -36,3 +36,5 @@ export interface DeleteItem {
 export interface ItemsLoading {
   type: typeof LOADING_ITEMS;
 }
+
+export type itemsActionTypes = GetItems | AddItem | DeleteItem | ItemsLoading;

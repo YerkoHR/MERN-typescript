@@ -1,15 +1,14 @@
 import * as types from "../types/errorTypes";
-import { ItemsActionTypes } from "../types";
 
 const initialState: types.Errors = {
-  msg: {},
+  msg: null,
   status: null,
   id: null
 };
 
 const errorReducer = (
   state = initialState,
-  action: ItemsActionTypes
+  action: types.errorActionTypes
 ): types.Errors => {
   switch (action.type) {
     case types.GET_ERRORS:
@@ -20,7 +19,7 @@ const errorReducer = (
       };
     case types.CLEAR_ERRORS:
       return {
-        msg: {},
+        msg: null,
         status: null,
         id: null
       };

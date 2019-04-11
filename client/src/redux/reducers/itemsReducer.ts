@@ -1,4 +1,4 @@
-import * as types from "../types";
+import * as types from "../types/itemsTypes";
 
 const initialState: types.Items = {
   items: [],
@@ -7,7 +7,7 @@ const initialState: types.Items = {
 
 const itemsReducer = (
   state = initialState,
-  action: types.ItemsActionTypes
+  action: types.itemsActionTypes
 ): types.Items => {
   switch (action.type) {
     case types.GET_ITEMS:

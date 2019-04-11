@@ -1,10 +1,10 @@
 import * as types from "../types/errorTypes";
 
 export const getErrors = (
-  msg: object,
+  msg: string,
   status: number,
-  id: null = null
-): types.getErrors => ({
+  id: string | null = null
+): types.GetErrors => ({
   type: types.GET_ERRORS,
   error: {
     msg,
@@ -13,6 +13,6 @@ export const getErrors = (
   }
 });
 
-export const clearErrors = (): types.clearErrors => ({
+export const clearErrors = (): types.ClearErrors => ({
   type: types.CLEAR_ERRORS
 });

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import { Items } from "../redux/types";
-import { getItems, addItem, deleteItem } from "../redux/actions";
+import { Items } from "../redux/types/itemsTypes";
+import { getItems, addItem, deleteItem } from "../redux/actions/itemsActions";
 import { AppTypes } from "../redux/reducers";
 import Modal from "./Modal";
 
@@ -14,6 +14,9 @@ interface PropTypes {
   addItem: (item: string) => void;
   getItems: () => void;
 }
+
+// TO TEST:  IN THE VIDEO BRAD CALLED LOADUSER FROM THE ROOT COMPONENT WHERE PROVIDER LIVES, FOR ME IT
+// WORKS IF I CONNECT IT DIRECTLY IN A CONTAINER.
 
 const ItemsList: React.FC<PropTypes> = ({
   itemsReducer,
