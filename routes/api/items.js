@@ -23,7 +23,7 @@ router.post("/", auth, (req, res) => {
   newItem.save().then(item => res.json(item));
 });
 
-// @route POST api/items/:id
+// @route DELETE api/items/:id
 // @desc Delete an Item
 // @access Private
 

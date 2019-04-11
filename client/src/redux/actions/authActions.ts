@@ -92,18 +92,20 @@ export const logout = () => ({
 });
 
 export const configToken = getState => {
-  // Get token from local storage
+  // Get token from localstorage
   const token = getState().authReducer.token;
 
+  // Headers
   const config = {
     headers: {
       "Content-type": "application/json"
     }
   };
 
-  // If token exists add to headers
+  // If token, add to headers
   if (token) {
     config.headers["x-auth-token"] = token;
   }
+
   return config;
 };

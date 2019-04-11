@@ -1,11 +1,16 @@
 import * as React from "react";
+import { AppTypes } from "../redux/reducers";
+import { connect } from "react-redux";
+import { Auth } from "../redux/types/authTypes";
 import Register from "./auth/Register";
 import Logout from "./auth/Logout";
 import Login from "./auth/Login";
 
-const Header: React.FC = () => {
-  const [toggle, onToggle] = React.useState(false);
+interface PropTypes {
+  auth: Auth;
+}
 
+const Header: React.FC<PropTypes> = ({ auth }) => {
   return (
     <nav
       style={{ background: "#FAFAFB" }}
@@ -17,31 +22,34 @@ const Header: React.FC = () => {
         <a className="navbar-item">
           <strong>Home</strong>
         </a>
-        <a
-          role="button"
-          className={
-            toggle ? "navbar-burger burger is-active" : "navbar-burger burger"
-          }
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-          onClick={() => onToggle(prevToggle => !prevToggle)}
-        >
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </a>
       </div>
 
-      <div className={toggle ? "navbar-menu is-active" : "navbar-menu"}>
+      <div className="navbar-menu">
         <div className="navbar-end">
-          <Register />
-          <Login />
-          <Logout />
+          {auth.isAuthenticated ? (
+            <>
+              <a className="navbar-item">
+                <strong>{`Welcome ${auth.user!.name}`}</strong>
+              </a>
+              <Logout />
+            </>
+          ) : (
+            <>
+              <Register />
+              <Login />
+            </>
+          )}
         </div>
       </div>
     </nav>
   );
 };
 
-export default Header;
+const mapStateToProps = (state: AppTypes) => ({
+  auth: state.authReducer
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

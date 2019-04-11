@@ -25,7 +25,7 @@ export interface GetItems {
 
 export interface AddItem {
   type: typeof ADD_ITEM;
-  item: string;
+  item: Item;
 }
 
 export interface DeleteItem {

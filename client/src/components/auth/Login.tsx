@@ -55,11 +55,9 @@ const Login: React.FC<PropTypes> = ({
 
   return (
     <>
-      {!isAuthenticated && (
-        <a className="navbar-item" onClick={() => handleToggle(true)}>
-          Login
-        </a>
-      )}
+      <a className="navbar-item" onClick={() => handleToggle(true)}>
+        Login
+      </a>
       <div className={modal ? "modal is-active" : "modal"}>
         <div className="modal-background" onClick={() => handleToggle(false)} />
 
@@ -117,8 +115,8 @@ const Login: React.FC<PropTypes> = ({
 };
 
 const mapStateToProps = (state: AppTypes) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-  error: state.errorReducer
+  error: state.errorReducer,
+  isAuthenticated: state.authReducer.isAuthenticated
 });
 
 export default connect(
